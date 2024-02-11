@@ -1,0 +1,83 @@
+\chapter{Challenges with Bengali Speech Recognition}
+
+
+\subsection{Linguistic Challenges}
+
+Bengali is a language with high linguistic complexity due to its writing system, inflectional morphology, gemination, and a high number of diphthongs and triphthongs \cite{bhattacharya2005inflectional}. It is crucial to know these concepts to effectively design and deploy speech recognition algorithms for the Bengali language. In this section, we discuss some of the unique linguistic challenges that Bengali poses, compared to Romance or Germanic languages. 
+
+\subsubsection{Grapheme Diversity}
+\label{subsec:alphasyllabary_script}
+
+One of the most unique features of the Bengali writing system is the use of orthographic syllables as graphemes. All alpha-syllabary or \textit{Abugida} languages follow this trait. We therefore interchangeably use the terms \textit{orthographic syllables} and \textit{graphemes} throughout this text.
+\\\\
+For Bengali, the number of unique orthographic syllables and hence, the number of possible words are very high. Bengali contains over $1300$ commonly used orthographic syllables whereas $\sim15$ million graphemes are theoretically possible \cite{alam2021large}. Many of these occur in rare words and also due to spelling mistakes\cite{sifat2020synthetic}. The Bengali Unicode system also allows duplicate ways to encode the same alphabet, which requires normalization \cite{rashid2010text} and also adds to the complexities surrounding grapheme diversity in text.
+%The intricate issues regarding Bengali Unicode inconsistencies have been described in \textcolor{red}{Cite sources}  \cite{}
+
+In Bengali, there are $168$ commonly used grapheme roots, and of them, $80$ are consonant conjuncts consisting of $2$, $3$ or higher consonants. 
+A high number of consonant conjuncts leads to challenges in grapheme to phoneme mapping which depreciates the performance of TTS models, as the same conjuncts often have different pronunciations based on the context. For example, {\bengalifont{সুস্মিত}} is pronounced {\ipafont{ʃuʃmit̪}} whereas {\bengalifont{বিস্মিত}} is pronounced {\ipafont{biʃʃ ̃it̪o}}, despite having the same grapheme {\bengalifont{স্মি}} in the middle.
+
+\subsubsection{Inflection}
+% \hl{should the title be inflection?}
+
+In linguistics, \textit{inflection} is the process of forming word variants using a template word based on grammar (e.g., variants based on tense) or sentence semantics (e.g., variants based on the gender of nouns) \cite{owens1998}.
+% In linguistics, \textit{Inflection} happens when the forms of words originating from a base `root word' differ based on grammar (i.e. tense, person, etc) \cite{owens1998}.
+Like most other Indic languages, Bengali is highly inflectional. Nouns have over $100$ case markers/inflection variations and verbs are found to have more than $40$ unique variations. This makes the number of whitespace-tokenized `words' occur very frequently, on the level of tens of millions compared to $188$k words in English \cite{stevenson2010oxford}. Bengali morphology also allows compound word creation which leads to a high number of Out of Vocabulary (OOV) words. This issue causes challenges in TTS and ASR modeling, especially for low-resource languages \cite{murthy2018effect} like Bengali.
+
+%Bengali is a highly inflectional language like most other Indic languages. It has many different inflected forms of nouns and verbs originating from a base root word but differs based on grammar (i.e. tense, person, etc). Nouns have over $100$ case markers/inflection variations and verbs are found to have more than $40$ unique variations. This makes the number of whitespace-tokenized 'words' occur very frequently, on the level of tens of millions compared to $188$k words in English \cite{stevenson2010oxford}. Bengali morphology also allows compound word creation which leads to a high number of Out of Vocabulary (OOV) words. This issue causes challenges in TTS and STT modeling, especially for low-resource languages \cite{murthy2018effect}.
+
+
+\subsubsection{Aspiration}
+\textit{Aspirated} consonants \emph{{\bengalifont{খ, ঘ, ছ, ঝ, ঠ, ঢ, থ, ধ, ফ, ভ}}}) [\emph{\ipafont{kʰ, gʱ, cʰ, ɟʱ, tʰ, dʱ, t̪ʰ, d̪ʱ, pʰ, bʱ}}]
+are consonants followed by voiceless glottal fricatives \cite{vaux1998laryngeal}. Aspirated consonants pose challenges both in ASR and TTS modeling due to their subtlety in pronunciation. This, coupled with exaggerated aspiration in breathy voices, makes modeling real-life speech extremely hard \cite{berezina2010autoregressive}. Moreover, people with strong accents as well as non-native speakers, pronounce these aspirated sounds differently and hence make generalization difficult. \cite{li2016improving}. 
+
+\subsubsection{Gemination}
+\textit{Gemination} is an instance of uttering a consonant for a longer period of time due to its consecutive use in a sentence \cite{kaye2005gemination}. For example, {\bengalifont{বাদ দাও}} [{\ipafont{bad̪  d̪a͡o̯}}] may also be pronounced {\bengalifont{বাদ্দাও}} [{\ipafont{bad̪d̪a͡o̯}}], where the latter is geminated; the difference between these two pronunciations are subtle in natural speech but are quite different in text. In Bengali, gemination may occur both in-between words and within a single word. But it is more common between two consecutive words which start and end with similar phonemes. While this linguistic feature poses challenges in determining word boundaries for ASR algorithms for many languages \cite{messaoudi2006arabic}, the modeling challenges posed for Bengali are not studied in detail in the literature. Roughly, gemination in Bengali can be summarized into the following bins:
+% 1. Assimilation 
+% 2. Progressive Assimilation
+% 3. Long Consonant
+
+% 5. Juncture 
+% \hl{add one liner explainers and examples or comment out these five points to be included later}
+\begin{enumerate}
+    \item Assimilation: Two sounds in a word can influence each other and reach a level of
+equality. {\bengalifont জন্ম>জম্ম} [{\ipafont ɟɔnmo>ɟɔmmo}], {\bengalifont কাঁদনা>কান্না} [{\ipafont kãd̪na>kanna}]
+
+
+
+\item Progressive Assimilation: Here the previous sound of the word influences the later
+sound of the word. {\bengalifont পদ্ম>পদ্দ}[{\ipafont pɔd̪d̪o>pɔd̪d̪o}], {\bengalifont লগ্ন>লগ্গ}[{\ipafont lɔgno>lɔggo}]
+
+
+\item Long Consonant: Sometimes to emphasize something the sounds are uttered dually in a word.
+{\bengalifont পাকা>পাক্কা}[{\ipafont paka>pakka}], {\bengalifont সকাল>সক্কাল}[{\ipafont ʃɔkal>ʃɔkkal}]
+
+\item Deletion of Consonant Diacritic R ({\bengalifont{র}}): Due to the deletion of {\bengalifont র-কার} the later sound of the previous {\bengalifont র} is often uttered as a double sound of that consonant.  {\bengalifont তক>তক্ক}[{\ipafont t̪ɔrko>t̪ɔkko}], {\bengalifont মারল>মাল্ল}[{\ipafont marlo>mallo}],{\bengalifont করলাম>কল্লাম}[{\ipafont korlam>kollam}]
+
+
+\item Juncture: Juncture in Bengali follows some specific rules and forms gemination, such as: {\bengalifont বন + ওষধি = বনৌষধি} [{\ipafont bɔn+oʃod̪ʱi=bɔno͡u̯ʃod̪ʱi}] {\bengalifont মরু + উদ্যান = মরূদ্যান}[{\ipafont moru+ud̪d̪an = morud̪d̪an}] {\bengalifont বিপদ+জাল = বিপজ্জাল }[{\ipafont bipɔd̪+ɟal=bipɔjjal}]
+
+\end{enumerate}
+
+\subsubsection{Diphthong and Triphthong}
+
+A \textit{diphthong} is a combination formed with two vowels in a single syllable. The semi-vowel of the diphthong is placed either on the onset or the coda of the syllable. Thus diphthong is the linguistic summation of vowels plus glide. The exact number of Bengali diphthongs has varied from expert to expert \cite{jeenatAli}. According to  Sukumar Sen \cite{sukumar1994bhasar}, there are only two Bengali diphthongs with characters assigned to them ({\bengalifont{ঐ, ঔ}}). Suniti Kumar Chatterjee \cite{suneetikumarC} had however pointed out $25$ diphthongs while Muhammad Abdul Hai had opined that the Bengali language can have up to $31$ diphthongs among which $19$ are regular and $12$ are irregular \cite{muhammad2009sound}. Bengali has a far higher number of diphthongs than English (which has $10$ diphthongs).
+\\\\
+Similarly, we have triphthongs. ``Triphthong  is  a  combination  of  three  vowel  sounds  where  the  first vowel glides to the second which again glides to the third.'' as defined by Barman et al. \cite{barman2009contrastive}.
+%\blue{add example} 
+In English, there are $5$ Tripthongs whereas Bengali has $17$. 
+\\\\
+Apart from these, there are many grammatical features in Bengali that make ASR and TTS modeling hard for Bengali. Brahmic Schwa deletion ambiguity \cite{johny2018brahmic} i.e. many Bengali words dropping their trailing vowel sounds are hard to model without a proper language model. The high number of homographs in Bengali \cite{rashidprocess} \cite{homographSayma} are also related to this issue making modeling more challenging. Nasality \cite{hawkins1985acoustic} is often skipped while pronouncing by native Bengali speakers, but their written forms often explicitly include the markers of it. Also, it has been reported \cite{hayes1991bengali} that the phonological phrases in Bengali correspond to no plausible constituent of syntactic representation. This creates problems in modeling speech ensuring proper prosody. In Bengali speech, the phone(s) associated with glide (semivowel, glide, or semi-consonant is a sound that is phonetically similar to a vowel sound but functions as the syllable boundary), diphthongs (sound formed by the combination of two vowels) and emphasizers (modifier that serves to enhance and give additional emotional context) often sound similar. As these have different written representations, distinguishing them often requires high contextual information and this also poses challenges while modeling \cite{mandal2007word}. 
+\\\\
+One unavoidable instance in Bangla sentence structure is the changing position of morpheme in the sentence. Bangla Language follows the SOV pattern of sentence structure. But in literature or daily life discourse, this pattern often alters to SVO, VSO, and OVS. \cite{abAbul2015} \cite{BBkotha2014}
+\\\\
+Also, there are Bengali speakers who use a high number of foreign/loan words from different languages and the pronunciation and spelling of these are often not standardized. This also causes challenges while working with real-life/diversified data \cite{roy1969some}
+
+\subsection{Dataset Acquisition Challenges}
+
+There previous datasets have been recorded using studio microphone setup and thus not scalable and expensive. And also the standard annotation platforms such as ELAN etc have a steep learning curve and not scalable and crowdsource-friendly. Thus, we are using two platforms for data collection. 
+
+\subsection{Modeling Challenges}
+
+% \textcolor{red}{Inputs from Sushmit bhai}
+The training of these large SOTA models require a lot of computational support that is often not feasible for academic researchers. Also, as the number of unique tokens for Bengali is higher than that of English, the convergence is also more difficult for Bengali compared to English and other latin-alphabet based system. Also, as Bangla is an agglutinative language, there are often different morphological variations for words, that are phonetically similar or even identical but orthographically different. For these languages, ASR is even more challenging for this phonetic ambiguities. These, coupled with the linguistic challenges mentioned in the above section, makes Bengali ASR modeling a comparatively challenging task compared to its English counterpart. Also, there are a wide variety of dialects and accents present in Bangla, which makes modeling difficult. Although the exact phonetic diversities across the different Bangladeshi dialects are not quantified well, we acknowledge the challenges and try to collect data from all the challenging strata(both textual and audio) so that the training corpus may have a sufficient diversity for the neural networks to train from.
+

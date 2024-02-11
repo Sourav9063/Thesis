@@ -1,0 +1,176 @@
+\chapter{Validation and Linguistic Challenges of Standard Bengali IPA}
+
+\section{Morphological Variations in Words}
+The Bengali language exhibits an extensive array of morphological variations, presenting a challenge in accurately contextualizing the meaning of words in light of their morphological alterations. It poses a challenge to accurately represent these subtle morphological variations within the framework of the International Phonetic Alphabet (IPA). 
+Consider the Bengali word \textbengali{আজকেই}, transcribed as \ipa{/ɐɟkeɪː/}, or loaned words with Bengali morphological extensions like \textbengali{মেক্সিকোতেও} \ipa{/meksɪkoto:/} and \textbengali{মেক্সিকোও} \ipa{/meksɪkoo:/}. While these all end with a vowel, without a syllabic marker, it may not be immediately clear that these suffixes are part of the base word. However, by incorporating the lengthening diacritic after the word (the long vowel diacritic \ipa{/ː/}), this distinction becomes more apparent to the reader.
+The reason for utilizing this diacritic is rooted in certain linguistic contexts. In some cases, when producing specific vowels, some individuals perceive a long \ipa{i:} as merely an extended version of the short vowel, without any discernible difference in quality, i.e., without raising the tongue for the long sound. For instance, Bengali \ipa{e:} is slightly higher than Bengali e, and Bengali \ipa{e̯} (short) falls midway between cardinal e and \ipa{ɛ}. This concept is supported in the work of Suniti Kumar Chatterji as well. Furthermore, this long vowel diacritic also clears out the confusion that no case of diphthongs is present here (\textbengali{মেক্সিকোও} \ipa{/meksɪkoo:/})
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|}
+            \hline
+             \textbengali{শুটিংয়ে} \ipa{/ʃu.tɪŋʲ.eː/} \\ 
+            \hline
+             \textbengali{শুটিংও} \ipa{/ʃu.tɪŋ.oː/} \\
+            \hline
+             \textbengali{গরুগুলোও} \ipa{/goɾugulooː/} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of morphological suffixes}
+\end{table}
+
+The issue with morphological suffixes may create confusion to distinguish them from diphthongs such as the above word \textbengali{গরুগুলোও} \ipa{/goɾugulooː/}, some might transcribe it as \textbengali{গরুগুলোও} \ipa{/goɾugulo͡o̯/} because there are two vowels together in the word. But if we notice carefully and break into the syllable of the \ipa{/go.ɾu.gu.lo.oː/}, both of the vowels belongs to different syllable, even if both of the vowels are beside each other the last vowel o is pronounced with a long sound. This is the reason we have annotated morphological variation in such cases with long vowel marks.
+
+\section{Diphthongs}
+
+Our dataset contains cases of Bengali diphthongs. To accurately transcribe them, it's crucial to first identify whether they are indeed diphthongs. Syllabification serves as a method to recognize diphthongs, which makes the process easier. However, due to the shortness of time, we decided to avoid the process of syllabication of each word just to identify diphthongs. Another significant aspect in distinguishing diphthongs is the use of the glide. The upper diphthong glide \ipa{(͡  )} is used to describe the movement of the articulatory vocal organs, particularly the tongue, from a higher position to a lower one during diphthong production. This downward movement contributes to the distinct sound of the diphthong. Each language possesses its own set of unique diphthongs. We've provided a diphthong chart, from which standard Bengali focuses primarily on the regular diphthongs. Understanding the role of the glide and accurately using it ensures the correct pronunciation of words in a given language.
+
+Examples
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|c|}
+            \hline
+             \textbengali{পরিচর্যায়} & \ipa{/poɾɪcɔɾɟɐ͡e̯/} \\
+            \hline 
+             \textbengali{ভাই} & \ipa{/bʱɐ͡ɪ̯/} \\
+            \hline 
+             \textbengali{যাচাই} & \ipa{/ɟɐ.cɐ͡ɪ̯/} \\
+            \hline 
+             \textbengali{চাই} & \ipa{/cɐ͡ɪ̯/} \\
+            \hline 
+             \textbengali{দুই} & \ipa{/du͡ɪ̯/} \\
+            \hline
+             \textbengali{বোঝাই} & \ipa{/bo.ɟʱa͡ɪ̯/} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of Dipthongs}
+\end{table}
+
+Sometimes, a few cases of standard Bengali are found which may confuse the reader, if a certain word has a diphthong or vowel cluster. For example, \textbengali{শিরোইলে} is transcribed as \ipa{/ʃɪɾoɪle/}, here the \ipa{ɾoɪ} constitutes one single syllable, but the question remains if it is a vowel cluster or diphthong. Bengali native speakers articulate this word in this way where a downward movement of tongue position from o to \ipa{ɪ} occurs. As a result, the \ipa{o} stays as a pure vowel and glides toward \ipa{ɪ̯} which creates a diphthong. Hence, the final transcribed text is \ipa{/ʃɪɾo͡ɪ̯le/}. If the pronunciation of the word were something such as \ipa{/ʃɪ.ɾo.ɪ.le/} where the \textbengali{ই} letters are pronounced as a pure vowel and separately from the syllable then the final result might have been something different.
+
+\section{Loan words}
+
+Native Bengali speakers commonly integrate vocabulary from English, Arabic, Farsi, and Portuguese into their speech. As a result, distinctive phonemes of these languages, which may not be common in standard Bangla, are spoken by native speakers. Due to their frequent usage, these phonemes may not be distinctly differentiated from the standard Bangla phonetic inventory. This challenges IPA models in accurately recognizing and transcribing these foreign phonetic elements. 
+
+In our dataset, we have a significant number of English and Arabic words. To transcribe these words, we consider how native Bengali speakers, adhering to the standard Bengali form, would pronounce them. Since standard Bengali users often employ a more received pronunciation when uttering these words, we have annotated them accordingly. Hence, we have used \ipa{/z/, /f/, /v/ /s/} phonemes for the letters,  \textbengali{জ/য, ফ, ভ, শ/স} respectively. These sounds are not commonly present in the native Bengali language, but to transcribe the borrowed foreign words, we have employed these.  
+
+For example,
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|c|}
+            \hline
+             \textbengali{ফেইক} & \ipa{/feɪk/} \\
+            \hline 
+             \textbengali{শিডিউল} & \ipa{/ʃɪ.dɪ.ul/} \\
+            \hline 
+             \textbengali{মোস্তাফিজ} & \ipa{/most̪ɐfɪz/} \\
+            \hline 
+             \textbengali{যারহাদ} & \ipa{/zɐɾhɐd̪/} \\
+            \hline 
+             \textbengali{ফজর} & \ipa{/fɔzoɾ/} \\
+            \hline
+             \textbengali{রদ্রিগেজ} & \ipa{/ɾɔd̪ɾɪgez/} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of borrowed foreign words}
+\end{table}
+
+\section{English Diphthong and Triphthong in Bengali Adaptive Form}
+
+In English words with diphthongs, the presence of \ipa{schwa/ə/} can influence the pronunciation. It appears in unstressed syllables usually containing the neutral, unstressed vowel sound. 
+This leads to subtle variations in how diphthongs are articulated. For example, ‘power’- in the word, the diphthong \ipa{/aʊ/} is followed by the schwa sound in the unstressed syllable. Or for the word ‘water’, the first syllable may be reduced to a schwa sound, especially if it's unstressed. It might sound like "wuhAbbreviation-ter." However, when these words are adapted by the Bengali speaker they will be pronounced like \ipa{/pa.o̯ʷ͡aɾ/} \ipa{/o͡ɐ̯.teɾ/}. 
+
+\vspace{5mm}
+
+Bengali speakers adopt English diphthongs that do not contain schwa and the pronunciation tends to align with the native English pronunciation. For example, 'high’ is transcribed in the Bangla as \ipa{/hɐ͡ɪ̯/}, boil as \ipa{/bɔ͡ɪ̯l/}, and time as \ipa{/tɐ͡ɪ̯m/}. 
+
+\vspace{5mm}
+
+The English language contains triphthongs, which is a rare case in the Bangla language. In the case of English triphthongs, native Bengali speakers tend to avoid pronouncing the word as a triphthong. Instead, they convert it into a diphthong and therefore avoid pronouncing the triphthong word. For example, in English, the word ‘fire’ is pronounced as \ipa{/fʌɪə/}, which in Bangla is transcribed as \ipa{/fɐʲ͡e̯.ɐɾ/}. Cases like these are found in these words as well - ‘hour’ \ipa{/aʊər/}, which is pronounced as \ipa{/ɐ.oʷ͡ɐ̯ɾ/}, ‘prayer’ \ipa{/preɪər/}, pronounced as \ipa{/pɾe.ɐɾ/}, ‘pure’ \ipa{/pjʊr/} pronounced as \ipa{/pɪ͡o̯ɾ/}. 
+
+\vspace{5mm}
+
+Hence the only concern while transcribing these words is how a native speaker pronounces them. 
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|c|}
+            \hline
+             \textbengali{ফায়ার} & \ipa{/fɐʲe.ɐɾ/} \\
+            \hline 
+             \textbengali{ফাইনাল} & \ipa{/fɐ͡ɪ̯.nal/} \\
+            \hline 
+             \textbengali{শুটআউটে} & \ipa{/ʃut.ɐ͡u̯teː/} \\
+            \hline 
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of adaptive English words}
+\end{table}
+
+In the first example, \ipa{fɐʲe.ɐɾ} is transcribed for the English word 'fire'. The native English speaker pronounced it as \ipa{faɪər} where the diphthong \ipa{aɪ} glides into schwa \ipa{ə} in the second syllable. However, the Bangla language does not have a schwa \ipa{ə} sound as a result for this English diphthong word native Bangla speakers use the existing sound to produce the loaned word as \ipa{fɐʲe.ɐɾ} which does not have a diphthong in the adaptive form. 
+
+The pronunciation of words by Bengali speakers can vary based on regional accents and specific contexts. Even a standard native speaker may pronounce certain words differently depending on the situation, which could lead to variations in IPA transcription. Unless the transcription is based on audio data, ensuring accurate contextual transcription can be a challenge.
+
+\section{Transcribing Numbers}
+In the dataset, there are numbers represented in various forms like \textbengali{"19টা", "১ম", "১৯৮৯", "১০০০"}, or in the context of phone numbers and house numbers. To transcribe these, we followed an IPA transcription based on how we naturally pronounce them. For instance, \textbengali{"২০৬"} is transcribed as \ipa{"d̪uɪ̯ʃo cʰoe̯"}. When numbers are pronounced individually, they are transcribed accordingly, for example, \textbengali{"২০৫০"} as \ipa{"d̪uɪ̯ ʃunno pãc ʃunno"}.
+
+\section{Handling the cases of Abbreviations and Acronyms}
+To ensure dataset accuracy and disambiguate between abbreviations and acronyms, we established a specific protocol. When transcribing abbreviations like \textbengali{"ম., ড., মো."}, we referred to the context to identify their full forms, which in this case were \textbengali{"মহাম্মদ", "ডাক্তার", and "মোহাম্মদ"}. We then proceeded to transcribe the entire words. In the case of acronyms like \textbengali{"এসএসসি", "মূসক", and "পিডিডি"}, we applied IPA notation for accurate representation. Handling these types of transcriptions poses certain challenges. Sometimes \textbengali{মহাম্মদ} might be spelled and pronounced as \textbengali{মহাম্মাদ} or only \textbengali{স.} is only given in a sentence and the transcriber has to assume the words if proper indication is not given in the sentence. So with abundant acronyms and abbreviations in a language, the transcription of IPA for these may produce incorrect transcriptions.
+
+Acronym Examples
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|c|c|}
+            \hline
+             No & Acronym & IPA \\
+            \hline 
+             1 & \textbengali{এসএসসি} & \ipa{esessɪ} \\
+            \hline 
+             2 & \textbengali{পিডিডি} & \ipa{pɪdɪdɪ} \\
+            \hline
+             3 & \textbengali{মূসক} & \ipa{muʃɔk} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of Acronym}
+\end{table}
+
+Abbreviation Examples
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.95\columnwidth}{!}{
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+             No & Abbreviation & Bangla Word & IPA \\
+            \hline 
+             1 & \textbengali{ম.} & \textbengali{মহাম্মদ} & \ipa{mɔhɐmmɔd̪} \\
+            \hline 
+             2 & \textbengali{মো.} & \textbengali{মোহাম্মদ} & \ipa{mohɐmmɔd̪} \\
+            \hline
+             3 & \textbengali{ডা.} & \textbengali{ডাক্তার} & \ipa{dɐktɐɾ} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of Abbreviation}
+\end{table}
+
+\section{Orthographic Challenges}
+Bengali orthography may not always align perfectly with phonetic transcription, requiring careful interpretation. Our dataset has been curated from written texts, based on the specific annotator's pronunciation intuition, as pronunciation sometimes varies from individual to individual. In spite of this, the pronunciation of a word might match word to word in the IPA transcription. Such as \textbengali{হ্রাসমান} \ipa{/ɾɐʃmɐn/}, the \textbengali{হ} letter here is not pronounced the way it is pronounced in the word \textbengali{হলুদ} \ipa{/holud̪/}. Also in the spelling of the word \textbengali{হলুদ}, there is not any \textbengali{‘ও’} visible but while articulating the word an \ipa{/o/} sound has been produced and that’s how the word has been transcribed. 
+
+\section{Placement of Diacritics}
+IPA transcription involves a meticulous and time-consuming manual process. Accurate placement of diacritics and special characters is critical for correctly representing sounds. For instance, if we were to transcribe the Bengali word \textbengali{দোয়েল} as \ipa{/doel/} or \ipa{/d̪o͡e̯l/}, rather than \ipa{/d̪oʲel/}, it would lead to an inaccurate pronunciation.
+
+
+

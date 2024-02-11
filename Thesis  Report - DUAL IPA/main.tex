@@ -1,0 +1,104 @@
+\documentclass[a4paper,oneside,11pt]{report}
+
+%packages
+    %\usepackage{mystyle}
+    \usepackage[english]{babel}
+    \usepackage[utf8]{inputenc}
+    \usepackage{ragged2e}
+    \usepackage{hyperref}
+    \usepackage{fontspec}
+    \usepackage{amsmath}
+    \usepackage{lipsum}
+    \usepackage{graphicx}
+    \usepackage[export]{adjustbox}
+    \usepackage{wrapfig}
+    \usepackage{caption}
+    \usepackage{longtable}
+    \graphicspath{{figures/}}
+    \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+    \usepackage{titlesec}
+    \usepackage{tipa}
+    \linespread{1.2}
+
+    \usepackage{schemabloc,tikz}
+    \usepackage{amsfonts,epsfig,cite,array,multirow,graphicx,amsmath,amsthm,ltablex,tabularx,setspace,arydshln,amssymb,multirow}
+    \usetikzlibrary{circuits, arrows}
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}{Lemma}
+    \usepackage{amsmath}
+    \usepackage{amsfonts}
+    \usepackage{amssymb}
+    \usepackage{bbm}
+    \usepackage{multicol}
+    \usepackage{mathtools}
+    \usepackage{textcomp}
+    \usepackage{stackengine}
+    \usepackage{booktabs}
+    \usepackage{longtable}
+    \usepackage{multirow}
+    \usepackage{graphicx}
+    \usepackage{subcaption}
+    \usepackage{float} 
+    \usepackage{tabularx}
+
+  \usepackage[numbers]{natbib}
+\bibliographystyle{IEEEtranN}
+    % \usepackage{datetime}
+    
+    \renewcommand{\baselinestretch}{1.4}
+    \setmainfont{Georgia} 
+    
+    \pagenumbering{roman}
+    \usepackage{fontspec}
+    \usepackage{polyglossia}
+% \usepackage[ruled]{algorithm2e}
+    \newfontfamily\bengalifont[Ligatures=TeX]{kalpurush.ttf}
+    \newfontfamily\ipafont[Ligatures=TeX]{DoulosSIL-Regular.ttf}
+    \setdefaultlanguage{english}
+    \setotherlanguage{bengali}
+    % \newfontfamily\bengalifont[Script=Bengali]{kalpurush}
+
+
+    % Edited by Rakib
+    \setcounter{secnumdepth}{3}
+    \usepackage{makecell}
+\newcommand{\ipa}[1]{{\ipafont #1}}
+
+\begin{document}
+
+%Front Matter
+\include{FrontMatter/cover_page}
+\include{FrontMatter/title_page}
+\include{FrontMatter/recommendation_letter}
+\include{FrontMatter/approval_of_thesis}
+
+\pagenumbering{roman}
+
+\include{FrontMatter/acknowledgement}
+\include{FrontMatter/abstract}
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%Chapters
+\clearpage
+\pagenumbering{arabic}
+\include{Chapters/introduction}
+\include{Chapters/RelatedWork}
+\include{Chapters/Bengali_IPA_Framework}
+\include{Chapters/Validation_and_Linguistic_Challenges}
+\include{Chapters/Methodology}
+%\include{Chapters/CollectionPlatform}
+\include{Chapters/DataCollectionAndValidation}
+\include{Chapters/Dataset}
+\include{Chapters/Benchmarking}
+\include{Chapters/NationalCompitiion}
+\include{Chapters/FutureWork}
+\include{Chapters/Conclusion}
+% \bibliographystyle{IEEEtran}
+
+\bibliography{mybib}
+
+\end{document}

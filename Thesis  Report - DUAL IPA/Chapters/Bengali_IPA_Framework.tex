@@ -1,0 +1,434 @@
+\chapter{Bengali IPA Transcription Framework}
+% Linguist ra likhbe
+Despite the widespread use of the Bengali language worldwide, there's a notable absence of a comprehensive IPA transcription framework and modeling. While the government-endorsed IPA system exists, it doesn't always offer clear explanations for specific diacritic usage, nor does it provide consistent reasonings for transcribing loaned words, accounting for morphological variations, or giving accurate IPA transcriptions. Besides, there remain unresolved debates among linguists regarding the inventory of vowels, semi-vowels, diphthongs, and consonants in Bengali. Scholars like Abdul Hai~\cite{hai1964dhwonibijnan} have observed that the existence of long vowels in the language does not make a difference in the meaning and specific tongue positions for vowel/a/, which leads us to questions about the articulation manner of morphological suffixes and accurate numbers of pure vowels in the language.
+
+\vspace{5mm}
+
+Regional variations in Bengali further complicate matters, impacting not only the pronunciation variation among individual speakers but also how sounds are produced based on different regions and dialects. Noting all these drawbacks of the Bengali language, we propose an IPA framework that we've employed to create a dataset of 70,000 words, alongside a modeling approach for accurate Bengali-to-IPA transcription. It's worth mentioning that our suggested phonetic representations may not be universally accepted, and users are encouraged to substitute specific phonemes with alternatives that better align with their linguistic preferences. With the readily available IPA chart, individuals can readily determine which sounds best match the intended IPA representation.
+
+
+\section{Vowels}
+In our proposed IPA, we conducted a thorough review and made some revisions that were then incorporated into our dataset. It's important to note that the vowel sounds in Bengali are articulated in a lax manner. After carefully listening to the IPA sounds provided by Peter Ladefoged (1975), we devised a chart where these two sounds are considered true equivalents. We recommend substituting \ipa{/ɐ/} for \ipa{/a/} when representing the Bengali letter \textbengali{'আ'}. The \ipa{/a/} is an open vowel and it’s produced towards the front of the mouth.
+On the other hand, \ipa{/ɐ/} is produced at the center of the mouth and the mouth is slightly less open while articulating this which is more suitable for the Bangla letter \textbengali{'আ'} rather than the \ipa{/a/}sound.  
+ Similarly, for the Bengali letter \textbengali{'ই'}, we propose representing it as \ipa{/ɪ/}. The position of \ipa{/ɪ/} is a near-high, front vowel in comparison to \ipa{/i/} which is a high, front vowel. While producing the \ipa{/ɪ/}sound, the position of the tongue remains slightly lower and back in the mouth in comparison to the \ipa{/i/}. The reason we propose \ipa{/ɪ/} for the Bangla letter \textbengali{'ই'} is that the \ipa{/ɪ/}is a lax vowel and when we produce the \textbengali{'ই'} sound, there is less muscular tension in the tongue.  This adjustment better aligns with the articulation of native Bengali speakers, where the \ipa{/ɐ/} and \ipa{/ɪ/} sounds are more appropriate. Regarding the \textbengali{অ্যা} sound, both \ipa{/æ/} and \ipa{/ɛ/} are true equivalents. However, for consistency in our dataset, we have chosen to use \ipa{/ɛ/} exclusively.
+
+\begin{table}[!htbp]
+    \centering
+    \resizebox{0.45\textwidth}{!}{%
+    \begin{tabular}
+    % {p{20mm}p{15mm}p{15mm}p{15mm}}
+    {lccc}
+    
+        \hline
+         & Front & Central & Back \\
+        \hline
+        
+        High & \ipa{ɪ} & & \ipa{u} \\
+        \hline
+
+        High-mid & \ipa{e} & & \ipa{o} \\
+        \hline
+
+        Low-mid & \ipa{æ/ɛ} & & \ipa{ɔ} \\
+        \hline
+
+        Low & & \ipa{ɐ} & \\
+        \hline
+
+    \end{tabular}%
+    }
+    \caption{Bengali Proposed Vowel Chart}
+    \label{tab:proposed_framework_vowel}
+\end{table}
+
+
+\section{Semi-vowel}
+Semi-vowels, often referred to as glides or semi-consonants, are phonetically identical to vowels but function at the syllable's boundary rather than as the syllable's central component known as the nucleus. The glide diacritic which is an inverted breve \ipa{(̯)} is used beneath semi-vowels in the International Phonetic Alphabet (IPA) to denote their dual nature, exhibiting features of both vowels and consonants. We have proposed four semi-vowels that have been incorporated into the dataset.
+
+\begin{table}[!htbp]
+    \centering
+    \resizebox{0.35\textwidth}{!}{%
+    \begin{tabular}
+    {|p{15mm}|p{15mm}|}
+
+        \hline
+        \multicolumn{2}{|c|}{Semi-vowel} \\
+        \hline
+    
+        \hline
+        bangla & ipa \\
+        \hline
+        
+        \textbengali{ই} & \ipa{/ɪ̯/} \\
+        \hline
+
+        \textbengali{উ} & \ipa{/u̯/} \\
+        \hline
+
+        \textbengali{ও} & \ipa{/o̯/} \\
+        \hline
+
+        \textbengali{এ} & \ipa{/e̯/} \\
+        \hline
+
+    \end{tabular}%
+    }
+    \caption{Proposed Semi-vowel Chart}
+    \label{tab:proposed_framework_semi_vowel}
+\end{table}
+
+
+\section{Diphthongs}
+To maintain clarity, it's wise to include all 31 diphthongs, especially considering the presence of regional dialects that might feature words absent in standard Bengali. Moreover, accurately discerning diphthongs requires audio reference rather than relying solely on written text. It's essential to acknowledge irregular diphthongs, particularly those involving the \ipa{/a/} sound, which lacks a semi-vowel counterpart in Bengali. Therefore, the determination of whether a diphthong is rising or falling as well as whether is a vowel cluster or actually a diphthong hinges on careful consideration. According to Dr. Syed Shahrier Rahman, Bengali diphthongs are quite
+contextual. So, we should look into the possible combinations instead of the available
+combinations.
+
+
+
+\begin{table*}[!htbp]
+    \centering
+    \resizebox{0.9\textwidth}{!}{%
+    \begin{tabular}
+    {|l|l|l|p{20mm}|l|l|l|}
+
+        \cline{1-3}
+        \cline{5-7}
+        \multicolumn{3}{|c|}{Semi-vowel (Regular)} & & \multicolumn{3}{|c|}{Semi-vowel (Irregulars)} \\
+        \cline{1-3}
+        \cline{5-7}
+
+
+        Bangla & IPA & Examples & & Bangla & IPA & Examples \\
+        \cline{1-3}
+        \cline{5-7}
+        
+        % \textbengali{আই} & \ipa{ai̯} & \textbengali{চাই} & & \multicolumn{3}{l|}{Irregulars:} \\
+        % \cline{1-3}
+        % \cline{5-7}
+
+        \textbengali{আই} & \ipa{ai̯} & \textbengali{চাই} & & \textbengali{ইয়ে} & \ipa{ie̯} & \textbengali{বিয়ে} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{আএ} & \ipa{ae̯} & \textbengali{যায়} & & \textbengali{ইয়া} & \ipa{ia} & \textbengali{টিয়া} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{আউ} & \ipa{au̯} & \textbengali{দাউ} & & \textbengali{ইও} & \ipa{io̯} & \textbengali{নিও} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{আও} & \ipa{ao̯} & \textbengali{যাও} & & \textbengali{এআ} & \ipa{ea} & \textbengali{দেয়া} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{অ্যাএ} & \ipa{æe̯} & \textbengali{দ্যায়} & & \textbengali{এয়ো} & \ipa{eo̯} & \textbengali{দেও} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{অ্যাও} & \ipa{æo̯} & \textbengali{ম্যাও} & & \textbengali{অ্যায়া} & \ipa{æa} & \textbengali{দ্যায়া} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{অএ} & \ipa{ɔe̯} & \textbengali{কয়} & & \textbengali{ওয়া} & \ipa{oa} & \textbengali{ধোয়া} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{অও} & \ipa{ɔo̯} & \textbengali{কও} & & \textbengali{ওএ} & \ipa{oe} & \textbengali{কয়ে} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{এই} & \ipa{ei̯} & \textbengali{সেই} & & \textbengali{উয়ে} & \ipa{ue} & \textbengali{শুয়ে, ধুয়ে} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{এউ} & \ipa{eu̯} & \textbengali{কেউ} & & \textbengali{উয়া} & \ipa{ua} & \textbengali{নুয়া, ধুয়া} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{ওই} & \ipa{oi̯} & \textbengali{বই} & & \textbengali{উয়ো} & \ipa{uo} & \textbengali{কুয়ো} \\
+        \cline{1-3}
+        \cline{5-7}
+
+        \textbengali{ওএ} & \ipa{oe̯} & \textbengali{ধোয় } \\
+        \cline{1-3}
+
+        \textbengali{ওউ} & \ipa{ou̯} & \textbengali{নৌকা} \\
+        \cline{1-3}
+
+        \textbengali{ওও} & \ipa{oo̯} & \textbengali{শোও} \\
+        \cline{1-3}
+
+        \textbengali{ইই} & \ipa{ii̯} & \textbengali{দিই} \\
+        \cline{1-3}
+
+        \textbengali{ইউ} & \ipa{iu̯} & \textbengali{মিউ} \\
+        \cline{1-3}
+
+        \textbengali{উই} & \ipa{ui̯} & \textbengali{রুই} \\
+        \cline{1-3}
+
+        \textbengali{উউ} & \ipa{uu̯} & \textbengali{কুউ} \\
+        \cline{1-3}
+
+        \textbengali{এও} & \ipa{eo̯} & \textbengali{শোও} \\
+        \cline{1-3}
+
+    \end{tabular}%
+    }
+    \caption{Proposed List of Diphthongs (Regular and Irregular)}
+    \label{tab:proposed_framework_dipthong}
+\end{table*}
+
+
+\section{Consonants}
+
+\renewcommand{\arraystretch}{2}
+\begin{table*}[!htbp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}
+    {|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+
+        \hline
+        
+        \multicolumn{2}{|l|}{Place} & \multicolumn{2}{l|}{\multirow{2}{*}{Bilabial}} & \multicolumn{2}{l|}{\multirow{2}{*}{Dental}} & \multicolumn{2}{l|}{\multirow{2}{*}{Alveolar}} & \multirow{2}{*}{Post-Alveolar} & \multicolumn{2}{l|}{\multirow{2}{*}{Palatal}} & \multicolumn{2}{l|}{\multirow{2}{*}{Velar}} & \multirow{2}{*}{Glottal} \\
+        \cline{1-2}
+
+        % \multicolumn{2}{|l|}{\textcolor{blue}{Manner}} &&&&&&&&&&&&& \\
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Manner}} & \multicolumn{2}{l|}{\multirow{2}{*}{}} & \multicolumn{2}{l|}{\multirow{2}{*}{}} & \multicolumn{2}{l|}{\multirow{2}{*}{}} & \multirow{2}{*}{} & \multicolumn{2}{l|}{\multirow{2}{*}{}} & \multicolumn{2}{l|}{\multirow{2}{*}{}} & \multirow{2}{*}{} \\
+        \hline
+
+        % \multicolumn{2}{|l|}{} & \begin{tabular}[c]{@{}l@{}} Una \\ sp \end{tabular} & Asp & \begin{tabular}[c]{@{}l@{}} Una \\ sp \end{tabular} & Asp & \begin{tabular}[c]{@{}l@{}} Un \\ asp \end{tabular} & Asp & \multirow{3}{*}{} & \begin{tabular}[c]{@{}l@{}} Una \\ sp \end{tabular} & Asp & \begin{tabular}[c]{@{}l@{}} Una \\ sp \end{tabular} & Asp & \\
+        % \cline{1-8}
+        % \cline{10-14}
+        \multicolumn{2}{|l|}{} & Unasp & Asp & Unasp & Asp & Unasp & Asp & \multirow{3}{*}{} & Unasp & Asp & Unasp & Asp & \\
+        \cline{1-8}
+        \cline{10-14}
+
+        \multirow{2}{*}{\textcolor{DarkCornflowerBlue}{Stop}} & \textcolor{DarkCornflowerBlue}{Voiceless} & \textbengali{প}\ipa{/p/} &  \textbengali{ফ}\ipa{/pʰ/} & \textbengali{ত}\ipa{/t̪/} & \textbengali{থ}\ipa{/t̪ʰ/} & \textbengali{ট}\ipa{/t/} & \textbengali{ঠ}\ipa{/tʰ/} & & \textbengali{চ}\ipa{/c/} & \textbengali{ছ}\ipa{/cʰ/} & \textbengali{ক}\ipa{/k/} & \textbengali{খ}\ipa{/kʰ/} & \\
+        \cline{2-8}
+        \cline{10-13}
+
+        & \textcolor{DarkCornflowerBlue}{Voiced} & \textbengali{ব}\ipa{/b/} & \textbengali{ভ}\ipa{/bʱ/} & \textbengali{ত}\ipa{/t̪/} & \textbengali{ধ}\ipa{/d̪ʱ/} & \textbengali{ড}\ipa{/d/} & \textbengali{ঢ}\ipa{/dʱ/} & & \textbengali{জ, য} \ipa{/ɟ/} & \textbengali{ঝ}\ipa{/ɟʱ/} & \textbengali{গ}\ipa{/g/} & \textbengali{ঘ}\ipa{/gʱ/} & \\
+        \hline
+
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Nasal}} & \multicolumn{2}{l|}{\textbengali{ম}\ipa{/m/}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{ন, ণ}\ipa{/n/}} & & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{ঙ, ং}\ipa{/ŋ/}} & \\
+        \hline
+
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Tap}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{র} \ipa{/ɾ/}} & & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \\
+        \hline
+        
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Flap}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{ড়}\ipa{/ɽ/}, \textbengali{ঢ়}\ipa{/ɽʰ/}} & & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \\
+        \hline
+
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Fricatives}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{শ, স}\ipa{/s/}} & \textbengali{শ, ষ, স}\ipa{/ʃ/} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \textbengali{*হ}\ipa{/h/} \\
+        \hline
+
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Lateral}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{\textbengali{ল}\ipa{/l/}} & & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \\
+        \hline
+
+        \multicolumn{2}{|l|}{\textcolor{DarkCornflowerBlue}{Approximant}} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & \multicolumn{2}{l|}{} & & \multicolumn{2}{l|}{\textbengali{*য়}\ipa{/j/}} & \multicolumn{2}{l|}{} & \\
+        \hline
+
+    \end{tabular}%
+    }
+    \caption{Proposed Consonant Chart}
+    \label{tab:proposed_framework_consonant}
+\end{table*}
+\renewcommand{\arraystretch}{1}
+
+[Note, in the chart~\ref{tab:proposed_framework_consonant}, Unasp. is used to convey, unaspirated, and Asp. is used to convey, aspirated]
+
+\vspace{5mm}
+
+*In certain contexts, the \textbengali{'হ'} \ipa{/h/} have extra careful articulation. For example, the word \textbengali{‘হ্রাস’}	in normal conversation would be pronounced as \ipa{/ɾɐʃ/} but a news presenter or a person reciting a poem would articulate with an aspiration sound in the initial position of the word such as \ipa{/ʰɾɐʃ/}.
+
+\vspace{5mm}
+
+*In the Bangla language, the \textbengali{য়} \ipa{/j/} is not articulated as a phoneme but is commonly used in the co-articulation. For example,  \textbengali{দেউলিয়া} \ipa{/d̪eulɪʲɐ/}, \textbengali{নিয়তি} \ipa{/nɪʲɔt̪ɪ/}, \textbengali{নিয়ম} \ipa{/nɪʲom/}- in these three words the Bangla letter \textbengali{‘য়’} is pronounced as palatalized \ipa{/ʲ/}. \textbengali{দাবায়} \ipa{/d̪ɐbɐ͡e̯/}, \textbengali{জয়} \ipa{/ɟɔ͡e̯/} - \textbengali{‘য়’} is pronounced as diphthong.
+
+\vspace{5mm}
+
+There are a few disputes among linguists regarding Bengali consonants. We have discussed the issues and provided a solution which we have followed in this consonant chart and in the curated dataset.
+
+\subsection{Disputing the Plosive and Affricate Argument}
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.95\columnwidth}{!}{%
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+             & \textbengali{চ} & \textbengali{ছ} & \textbengali{জ} & \textbengali{ঝ} \\ 
+            \hline
+             Plosive & \ipa{c} & \ipa{cʰ} & \ipa{ɟ} & \ipa{ɟʰ} \\
+            \hline
+             Affricate & \ipa{tʃ} & \ipa{tʃʰ} & \ipa{dʒ} & \ipa{dʒʱ} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription for Plosive and Affricate}
+\end{table}
+
+There has been a longstanding dispute among linguists about whether certain Bengali sounds, particularly those represented by \textbengali{চ, ছ, জ, and ঝ}, should be classified as affricates or plosives. Dr. Muhammad Abdul Hai~\cite{hai1964dhwonibijnan} agreed with this discussion and sided with the view that these sounds are best described as palatal plosives. In this proposal, we agree with this perspective, as when we consider how we articulate these words, they seem to align more closely with plosives rather than affricates.
+
+\subsection{\textbengali{ট} - Alveolar or Retroflex}
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.4\columnwidth}{!}{%
+        \begin{tabular}{|c|c|c|}
+            \hline
+             & \textbengali{ট} & \textbengali{ঠ} \\ 
+            \hline
+             Alveolar & \ipa{t} & \ipa{tʰ} \\
+            \hline
+             Retroflex & \ipa{ʈ} & \ipa{ʈʰ} \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of Consonants}
+\end{table}
+
+The \textbengali{ট} sound in Bengali is produced with the alveolar ridge acting as the fixed point in the mouth. The active part, which usually includes the tip of the tongue, interacts with this ridge during articulation~\cite{hai1964dhwonibijnan}. Abdul Hai~\cite{hai1964dhwonibijnan} acknowledges that while articulating words, the tip of the tongue curls up and back. This is why he categorizes it as an alveolar-retroflex-plosive sound~\cite{hai1964dhwonibijnan}.
+
+\subsection{\textbengali{ফ} - \ipa{/pʰ/} and \ipa{/f/} both or only \ipa{/pʰ/}}
+
+The pronunciation of the sound represented by \textbengali{ফ} in Bengali can vary regionally. While it is generally considered a plosive sound, in some regions, it may be perceived as a labio-dental fricative /\ipa{f}/ ~\cite{hai1964dhwonibijnan}. 
+
+As a native speaker, when I articulate words like \textbengali{ফরি, ফাইজলামি, ফরালেহা,} I bring my bottom lip close to the upper teeth, creating a narrow passage for the air to flow through. This suggests that ফ can indeed resemble a labio-dental fricative sound. However, it's important to note that this can still be a subject of debate, with variations observed from region to region and from person to person. As for written transcription, without the aid of audio from a regional speaker, accurately determining whether \textbengali{ফ} is pronounced as a plosive or a labio-dental fricative can be challenging. But if we have audio data from regional speakers, we can transcribe words that are pronounced with dialectal accents with /\ipa{f}/ sound (such as \ipa{fɔralæha}) and other words that are also found in standard Bengali with /\ipa{pʰ}/ (such as \ipa{pʰul}, \ipa{pʰɔʃol})
+
+Another concern with the /\ipa{pʰ}/ sound is when dealing with borrowed foreign words, there can be further variations in pronunciation. The choice between considering them as labio-dental fricatives or recognizing potential individual differences ultimately depends on the availability of audio data. In cases where only written text is available, the decision is typically based on IPA transcription without the benefit of audio confirmation. But as a native speaker when I articulate these borrowed words, I sometimes pronounce them with their English accent and sometimes I might produce them with a Bengali native accent. For example, when I pronounce the words \textbengali{ফরজ}, \textbengali{ফারসি}, \textbengali{ফিউচার} - I produce the labio-dental /\ipa{f}/. However, when I am producing the word \textbengali{ফেইক}, I sometimes pronounce them with the plosive /\ipa{ph}/ sound and when I am producing the word in a certain context, I might produce the /\ipa{f}/ sound. Without enough audio and video data, 
+it isn’t easy to come to a certain generalization. 
+
+\subsection{Trill r or Tap \ipa{ɾ}}
+The government website employs the trill 'r' sound, but in Bengali words like \textbengali{রাজা}, \textbengali{রাজ্য}, and \textbengali{রাগ} we don't naturally use the trill sound. To ensure better pronunciation, the tap sound (\ipa{ɾ}) would be more suitable for Bengali.
+
+\subsection{Contextual Substitution of phoneme}
+The Benglai /\ipa{ɟ}/ is a voiced palatal stop and in standard Bengali, there is no voiced alveolar fricative /\ipa{z}/. Furthermore, in the Bengali language, the closest phoneme with the labio-dental fricatives such as /\ipa{f}/ and /\ipa{v}/ are aspirated labial stops /\ipa{pʰ}/ and /\ipa{bʱ}/. However, many words in standard Bengali are adapted from foreign languages such as English, Arabic, Farsi, and so on. When native speakers articulate these loaned words they do not pronounce them in the same way a native English or native speaker Arabic does, but pronounce these with a native influence. Hence, for loaned words where the speaker articulates these foreign phonemes in a certain word context, we will consider these phonemes (/\ipa{ɟ}/, /\ipa{f}/, /\ipa{v}/) in the IPA transcription.
+
+\subsection{Voiced Aspiration}
+Aspiration is a significant distinctive feature in the Bengali phoneme. It can be noted from the chart above, that in Bengali, \textbengali{ভ, ধ, ঢ, ঝ,} and \textbengali{ঘ} are voiced aspirated stops. Aspiration is about how much air leaves your mouth while articulating the phoneme. If an unvoiced consonant is aspirated, then an extra puff of air leaves the mouth after the primary articulation is complete. For example in /\ipa{pʰ}/, /\ipa{t̪ʰ}/, /\ipa{cʰ}/, /\ipa{tʰ}/, and /\ipa{kʰ}/ voiceless aspiration occurs, hence for the secondary articulation of the aspiration, we use /\ipa{ʰ}/ which is voiceless. On the other hand, /\ipa{bʱ}/, /\ipa{d̪ʱ}/, /\ipa{dʱ}/, /\ipa{ɟʱ}/ and /\ipa{gʱ}/ are voiced stops and for that reason, it is suitable to use a voiced aspiration /\ipa{ʱ}/ for the secondary articulation. 
+In the govt-IPA, the aspiration suggestions for voiced stops have both voiced /\ipa{ʰ}/ aspiration and voiceless /\ipa{ʱ}/ aspiration as their secondary articulation. For instance, they kept both /\ipa{bʰ}/ or /\ipa{bʱ}/ for the transcription of the letter \textbengali{‘ভ’} despite that the /\ipa{ɦ}/ should be voiced after voiced consonants. 
+
+\section{Diacritics}
+Our proposed diacritics for standard Bengali.
+
+\begin{table}[!ht]
+    \centering
+    \resizebox{0.5\columnwidth}{!}{
+        \begin{tabular}{|c|c|}
+            \hline
+             \multicolumn{2}{|c|}{Diacritics} \\
+            \hline
+             \ipa{ʷ} & Labialized \\
+            \hline
+             \ipa{ʲ} & Palatalized \\
+            \hline
+             \ipa{◌̃} & Nasalized \\
+            \hline
+        \end{tabular}
+    }
+    \caption{Phonetic Transcription of proposed Diacritics}
+\end{table}
+
+\begin{itemize}
+    \item \textbf{Labialized:} The use of labialized diacritics is found in Bengali words such as \textbengali{উপরওয়ালা} \ipa{/upoɾoʷɐlɐ/}, \textbengali{দেওয়া} \ipa{/d̪eoʷɐ/}, \textbengali{নেওয়া} \ipa{/neoʷɐ/}, etc where the consonant sounds indicate that they are pronounced with rounded lips. In certain cases, diphthongs are pronounced with simultaneous lip rounding, such as \textbengali{রওশন} \ipa{/rɔ͡o̯ʷ.ʃon/}.
+
+    \item \textbf{Palatalized:} To determine the use of palatalized \ipa{ʲ}, we have followed two phonological rules. The rule for determining whether the Bengali consonant \textbengali{য়} (y) is palatalized or functions as a diphthong is as follows:
+
+    When the position of the \textbengali{য়} is in the syllable-final, without a following vowel, it remains unpalatalized. For example, in compound words like \textbengali{মামলায়} \ipa{/mɐmlɐ͡e̯/}, \textbengali{নিরাপত্তায়} \ipa{/nɪɾɐpot̪t̪ɐ͡e̯/}, etc.
+
+    Conversely, if a word with \textbengali{য়} concludes with a vowel in the syllable's final position and does not have \textbengali{য়} in the word's final position, it will be pronounced as a palatalized \ipa{ʲ}. For instance, this can be observed in words like \textbengali{ছেলেমেয়ে} \ipa{/cʰelemeʲe/}, \textbengali{খায়রুল} \ipa{/kʰɐʲeɾul/}, and \textbengali{নিয়ক} \ipa{/niʲom/}.
+
+    \item \textbf{Nasalized:} It was mentioned earlier that in Bangla, all seven oral vowels have their seven nasal counterparts, which is described using the nasalized diacritics \ipa{/ɪ̃ ẽ õ ã ɔ̃ ũ/}. This nasalization of vowels in Bengali text is consistently indicated by a diacritic known as 'chandarabindu' \textbengali{(ঁ)} placed above the relevant segment, and this occurrence is a common feature in Standard Bengali text.
+\end{itemize}
+
+\section{Loan Words Consideration: Vowel and Consonant}
+In the Bangla language, using loaned words from foreign languages and using them with a different pronunciation in comparison to their native pronunciation is quite common. In the case of vowels, no foreign phonemes are produced by native speakers. For example, the English word ‘foam’, ‘cloud’, and ‘flower’ is pronounced as\ipa{ /foʊm/}, \ipa{/klaʊd/}, and \ipa{/flaʊə/} by native English speakers. However, \ipa{/ʊ/} and \ipa{/ə/} are not articulated by the Bengali native speakers. Instead, they pronounce these words using the existing vowel phonemes of the Bangla language.
+
+\vspace{5mm}
+
+On the contrary, there are a few cases where foreign words are pronounced using consonant phonemes, which does not exist in Bangla.
+
+\begin{table}[!htbp]
+    \centering
+    \resizebox{0.45\textwidth}{!}{%
+    \begin{tabular}
+    % {|p{15mm}|p{15mm}|}
+    {|l|l|l|l|}
+    
+        \hline
+        & Bilabial & Labio-dental & Example \\
+        \hline
+        
+        Plosive & \textbengali{ফ} \ipa{/pʰ/} & & \\
+        \hline
+
+        Plosive & \textbengali{ভ} \ipa{/bʰ/} & & \\
+        \hline
+
+        Fricative & & \ipa{/f/} & \textbengali{ফেইল} \ipa{/fe͡ɪ̯l/} \\
+        \hline
+
+        Fricative & & \ipa{/v/} & \textbengali{ভিউ} \ipa{/vɪu/} \\
+        \hline
+
+    \end{tabular}%
+    }\caption{Trancription of foreign words.}
+\end{table}
+
+Labio-dental fricative sounds such as \ipa{/f/}, and \ipa{/v/} do not exist in the Bangla language but they are articulated by the native speakers when they produce loaned words with these phonemes.
+
+\begin{table}[!htbp]
+    \centering
+    \resizebox{0.45\textwidth}{!}{%
+    \begin{tabular}
+    % {|p{15mm}|p{15mm}|}
+    {|l|l|l|l|}
+    
+        \hline
+        & Palatal & Alveolar & Example \\
+        \hline
+        
+        Plosive & \textbengali{জ, য}\ipa{/ɟ/} & & \\
+        \hline
+
+        Fricative & & \ipa{/z/} & \textbengali{ম্যাগাজিন} \ipa{/mɛgɐzɪn/} \\
+        \hline
+
+    \end{tabular}%
+    }\caption{Transcription of foreign words.}
+\end{table}
+
+Same case for the alveolar fricative phoneme \ipa{/z/}. Loaned words from Arabic and English languages such as \textbengali{মেরাজ} \ipa{/meɾɐz/}, \textbengali{ম্যাগাজিন} \ipa{/mɛgɐzɪn/}, \textbengali{মোনাজাত} \ipa{/monɐzɐt̪/} are continuously used in the Standard Bangla.
+
+\vspace{5mm}
+
+English words such as judge \ipa{/ʤʌʤ/}, and justice \ipa{/dʒʌstɪs/} have voiced postalveolar affricate \ipa{/dʒ/} which is not used by native Bengali speakers. They turn this affricate sound into the plosive sound \ipa{/ɟ/} and articulate it as \ipa{/ɟudɟ/} and \ipa{/ɟustɪs/}.
+
+\vspace{5mm}
+
+The English language has a voiceless dental fricative sound \ipa{/θ/} which is not found in the Bangla language. They turn this phoneme into a voiceless aspirated dental plosive sound \ipa{/t̪ʰ/}. So ‘think’ is pronounced as \ipa{/t̪ʰiŋk/} in its Bangla adaptive form.
+
+\begin{table}[!htbp]
+    \centering
+    \resizebox{0.45\textwidth}{!}{%
+    \begin{tabular}
+    % {|p{15mm}|p{15mm}|}
+    {|l|l|l|l|}
+    
+        \hline
+        & Alveolar & Alveolar & Example \\
+        \hline
+        
+        Fricative & \textbengali{শ, স}\ipa{/s/} & \ipa{/s/} & \textbengali{স্টপ}\ipa{/stɔp/} \\
+        \hline
+
+    \end{tabular}%
+    }\caption{Transcription of foreign words.}
+\end{table}
+
+The \ipa{/s/} is a voiceless fricative alveolar sound that is found in both Bangla and foreign languages such as English. 
+
+
